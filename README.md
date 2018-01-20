@@ -56,7 +56,7 @@ You can read more about CK metrics: http://www.aivosto.com/project/help/pm-oo-ck
 # How to use it
 
 ```
-java -jar ck.jar <project dir> <path to csv output>
+java -jar ck.jar <project dir>
 ```
 
 # How to Contribute
