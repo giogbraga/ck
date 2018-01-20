@@ -16,7 +16,7 @@ public class FileUtils {
 	}
 	
 	private static void getAllDirs(String path, ArrayList<String> dirs) {
-		
+	
 		File f = new File(path);
 		if(f.getName().equals(".git")) return;
 		

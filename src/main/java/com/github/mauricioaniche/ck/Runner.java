@@ -2,48 +2,57 @@ package com.github.mauricioaniche.ck;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class Runner {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		
 		if(args==null || args.length < 2) {
 			System.out.println("Usage java -jar ck.jar <path to project> <path to csv>");
 			System.exit(1);
 		}
 		
-		String path = args[0];
-		String csvPath = args[1];
+		String projectName = args[0];
+		String path = args[1];
+		String commitAsJSon = args[2];
 		
 		CKReport report = new CK().calculate(path);
 		
-		PrintStream ps = new PrintStream(csvPath);
-		ps.println("file,class,type,cbo,wmc,dit,noc,rfc,lcom,nom,nopm,nosm,nof,nopf,nosf,nosi,loc");
-		for(CKNumber result : report.all()) {
+		PrintStream ps = System.out;
+		ps.print("[");
+        Iterator<CKNumber> interactor = report.all().iterator();
+		while(interactor.hasNext()){
+            CKNumber result = interactor.next();
 			if(result.isError()) continue;
 			
-			ps.println(
-				result.getFile() + "," +
-				result.getClassName() + "," +
-				result.getType() + "," +
-				result.getCbo() + "," +
-				result.getWmc() + "," +
-				result.getDit() + "," +
-				result.getNoc() + "," +
-				result.getRfc() + "," +
-				result.getLcom() + "," +
-				result.getNom() + "," +
-				result.getNopm() + "," + 
-				result.getNosm() + "," +
-				result.getNof() + "," +
-				result.getNopf() + "," + 
-				result.getNosf() + "," +
-				result.getNosi() + "," +
-				result.getLoc()
+			ps.print(
+				"{"+
+						"\"file\": \""+result.getFile() + "\"," +
+						"\"className\": \""+result.getClassName() + "\"," +
+						"\"type\": \""+result.getType() +  "\"," +
+						"\"cbo\": \""+result.getCbo() +  "\"," +
+						"\"wmc\": \""+result.getWmc() +  "\"," +
+						"\"dit\": \""+result.getDit() +  "\"," +
+						"\"noc\": \""+result.getNoc() +  "\"," +
+						"\"rfc\": \""+result.getRfc() +  "\"," +
+						"\"lcom\": \""+result.getLcom() +  "\"," +
+						"\"ncom\": \""+result.getNom() +  "\"," +
+						"\"nopm\": \""+result.getNopm() +  "\"," + 
+						"\"npsm\": \""+result.getNosm() +  "\"," +
+						"\"nof\": \""+result.getNof() +  "\"," +
+						"\"nopf\": \""+result.getNopf() +  "\"," + 
+						"\"nosf\": \""+result.getNosf() +  "\"," +
+						"\"nosi\": \""+result.getNosi() +  "\"," +
+						"\"loc\": \""+result.getLoc()+  "\"" +
+				"}"
 			);
+            if(interactor.hasNext()) {
+                ps.print(',');
+            }
 		}
-
-		ps.close();
+		ps.print("]");
 		
 	}
 }
