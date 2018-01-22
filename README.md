@@ -1,6 +1,6 @@
 # CK as a task of Commits Miner
 
-## Fork from mauricioaniche/ck to work as java task on https://github.com/mateusfreira/commits-miner
+Fork from mauricioaniche/ck to work as java task on https://github.com/mateusfreira/commits-miner
 
 ### How to add it as a task on commits minner?
 * Clone the Repository
@@ -12,6 +12,8 @@ git clone git@github.com:mateusfreira/ck.git
 ```bash
 {DIR-WHERE-YOU_CLONED_CK}/run.sh:metrics
 ```
+<img width="1436" alt="screen shot 2018-01-22 at 09 17 04" src="https://user-images.githubusercontent.com/234049/35218875-63638d98-ff57-11e7-976a-9aac21dc839c.png">
+
 * Save and good findings o/
 
 # What is Commits miner?
@@ -70,12 +72,6 @@ version of metric, which is not reliable. LCOM-HS can be better (hopefully, you 
 send us a pull request). 
 
 You can read more about CK metrics: http://www.aivosto.com/project/help/pm-oo-ck.html.
-
-# How to use it
-
-```
-java -jar ck.jar <project dir>
-```
 
 # How to Contribute
 
