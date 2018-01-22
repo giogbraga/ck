@@ -1,4 +1,22 @@
-# CK
+# CK as a task of Commits Miner
+
+## Fork from mauricioaniche/ck to work as java task on https://github.com/mateusfreira/commits-miner
+
+### How to add it as a task on commits minner?
+* Clone the Repository
+```bath
+git clone git@github.com:mateusfreira/ck.git
+```
+
+* Add the next task on Commits miner Configuration
+```bash
+{DIR-WHERE-YOU_CLONED_CK}/run.sh:metrics
+```
+* Save and good findings o/
+
+# What is Commits miner?
+    Commits miner is a tool to process and extract useful information from commits history in git repositories. (Check: https://github.com/mateusfreira/commits-miner)
+# What is CK? 
 
 This small projects calculates code metrics in Java projects by means
 of static analysis (i.e. no need for compiled code). Currently, it contains
