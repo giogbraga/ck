@@ -3,26 +3,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  DemoSonarCloudScan:
+  DemoSonarCloudSCan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
             fetch-depth: 0
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-      - name: Build and scan with Maven
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn clean verify org.sonarsource.scanner.maven:sonar -Dsonar.organization=giogbraga -Dsonar.projectKey=ck -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+              -Dsonar.organization=rekhugopal
+              -Dsonar.projectKey=SonarCloudCodeAnalyisis
+              -Dsonar.python.coverage.reportPaths=coverage.xml
